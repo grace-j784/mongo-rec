@@ -36,6 +36,13 @@ const operations = [
     fields: { username: "input" },
   },
   {
+    // added operation 1
+    name: "Get Users (by ID)",
+    endpoint: "/api/users/:userid",
+    method: "GET",
+    fields: { id: "input" },
+  },
+  {
     name: "Get Posts",
     endpoint: "/api/posts",
     method: "GET",

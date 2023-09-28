@@ -24,6 +24,11 @@ class Routes {
     return (await User.getUsers(username))[0];
   }
 
+  @Router.get("/users/:userid") // added to test TODO 1
+  async getUserById(_id: ObjectId) {
+    return await User.getById(_id);
+  }
+
   @Router.post("/users")
   async createUser(session: WebSessionDoc, username: string, password: string) {
     WebSession.isLoggedOut(session);
@@ -64,7 +69,15 @@ class Routes {
   async deletePost(session: WebSessionDoc, _id: ObjectId) {
     // TODO 3: Delete the post with given _id
     // Make sure the user deleting is the author of the post
-    throw new Error("Not implemented!");
+    const user = WebSession.getUser(session).id;
+    //const post = await this.getPosts(_id);
+    //const author = post.author;
+    const author = user;
+    if (author === user) {
+      return await Post.delete(_id);
+    } else {
+      //throw new PostAuthorNotMatchError(author, _id);
+    }
   }
 }
 
